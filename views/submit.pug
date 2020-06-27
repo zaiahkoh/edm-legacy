@@ -1,0 +1,87 @@
+mixin eventForm(index)
+  table
+    tr
+      td(colspan="2" align="center") Event #{+ index}
+    tr
+      td Title:
+      td
+        input(type='text', name='event' + index + '[title]', value='')
+    tr
+      td Organisation:
+      td
+        input(type='text', name='event' + index + '[organisation]', value='')
+    tr
+      td Thumbnail:
+      td 
+        input(type='text', name='event' + index + '[thumbnail]', value='')
+    tr
+      td Description:
+      td 
+        input(type='text', name='event' + index + '[description]', value='')
+    tr
+      td Date:
+      td 
+        input(type='text', name='event' + index + '[date]', value='')
+    tr
+      td Time:
+      td 
+        input(type='text', name='event' + index + '[time]', value='')
+    tr
+      td Venue:
+      td 
+        input(type='text', name='event' + index + '[venue]', value='')
+    tr
+      td Deadline:
+      td 
+        input(type='text', name='event' + index + '[deadline]', value='')
+    tr
+      td Link:
+      td 
+        input(type='text', name='event' + index + '[link]', value='')
+    tr
+      td Poster:
+      td 
+        input(type='text', name='event' + index + '[poster]', value='')
+    tr
+      td Poster Link:
+      td 
+        input(type='text', name='event' + index + '[posterLink]', value='')
+    tr
+      td Text:
+      td 
+        input(type='text', name='event' + index + '[text]', value='')
+
+
+
+html(lang="en")
+  head
+    title = "Submit an event"
+
+  body
+    form(action = "/submit", method = "POST")
+      
+      table
+        tr
+          td Number of events:
+          td
+            select(name="numberOfEvents")
+              option(value=numberOfEvents) #{numberOfEvents}
+        tr
+          td Link: 
+          td 
+            input(type='text', name='link', value='')
+        tr
+          td Week:
+          td
+            input(type='text', name='week', value='')      
+        tr
+          td Date: 
+          td 
+            input(type='text', name='date', value='')
+
+      - var n = 1;
+      while n <= numberOfEvents
+        +eventForm(n++)
+        
+
+      input(type='submit', value='Submit')

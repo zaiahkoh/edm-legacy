@@ -1,0 +1,297 @@
+- const link = "http://nussu.org.sg/broadcast/060420.html"
+- const date = "WEEK 12: 06 APR 2020"
+
+- var postTitle = ''
+if postInfo.week != ''
+  - postTitle = postTitle + '[' + postInfo.week + ']'
+if postInfo.event1
+  - postTitle = postTitle + postInfo.event1.title
+if postInfo.event2
+  - postTitle = postTitle + ' | '  + postInfo.event2.title
+if postInfo.event3
+  - postTitle = postTitle + ' | '  +postInfo.event3.title
+if postInfo.event4
+  - postTitle = postTitle + ' | '  +postInfo.event4.title
+if postInfo.event5
+  - postTitle = postTitle + ' | '  +postInfo.event5.title
+if postInfo.event6
+  - postTitle = postTitle + ' | '  +postInfo.event6.title
+if postInfo.event7
+  - postTitle = postTitle + ' | '  +postInfo.event7.title
+if postInfo.event8
+  - postTitle = postTitle + ' | '  +postInfo.event8.title
+if postInfo.event9
+  - postTitle = postTitle + ' | '  +postInfo.event9.title
+
+
+mixin summary(eventInfo, index)
+  table(style= "table-layout: fixed; width: 250px")
+    tr
+      td
+        p(align="center")
+          a(href="#" + index)
+            img(src=eventInfo.thumbnail width=240 height=150)
+    tr(height="100px")
+      td(style="width: 250px; word-wrap: break-word;")
+        div(class="vertical-center")
+          p(p align="middle" style="Font-size: 18px; padding:25px 0px 0px 0px;")
+            strong #{eventInfo.title}
+    tr
+      td(style="width: 250px; word-wrap: break-word;")
+        p(align="middle" style="Font-size: 13px; padding:15px 0px 15px 0px; line-height: 20px;")
+          strong
+            em #{eventInfo.organisation}
+    tr
+      td(style="width: 250px; word-wrap: break-word;")
+        p(align="left" style="font-family:Calibri; padding: 5px")
+          if eventInfo.description
+            strong Description: 
+            br
+            | #{eventInfo.description}
+          if eventInfo.date
+            br
+            strong Event Date: 
+            | #{eventInfo.date}
+          if eventInfo.time
+            br
+            strong Event Time: 
+            | #{eventInfo.time}
+          if eventInfo.venue
+            br
+            strong Event Venue: 
+            | #{eventInfo.venue}
+          if eventInfo.deadline
+            br
+            strong Deadline: 
+            | #{eventInfo.deadline}
+          if eventInfo.link
+            br
+            strong Link: 
+              a(href=eventInfo.link) #{eventInfo.link}
+
+mixin details(eventInfo, index)
+  tr(bgcolor="#F8F8F8")
+    td(colspan="4" align="middle" style="width:800px; padding: 20px")
+      h3(align="center" style="color:#000; font-weight: bold; line-height: 31px; font-size: 25px; font-family: Trebuchet MS; margin: 0;")
+        strong(id="docs-internal-guid-04723276-3708-c4b0-1ea1-4d12ed12295c")
+          a(id = index)
+          | #{eventInfo.title}
+      p(align="center" style="color:#000; font-weight: bold; line-height: 31px; font-size: 18px; font-family: Trebuchet MS; margin: 0; padding: 5px;")
+        em #{eventInfo.organisation}
+  tr(bgcolor="#F8F8F8")
+    td(colspan="4" align="center" valign="middle" style="padding: 5px 0 5px;font-size: 1px; line-height: 1px; width:300px")
+      p(align="center" style="color:#000; font-weight: normal; margin: 0; padding: 0; line-height: 20px; font-size: 15px;font-family: Trebuchet MS;")
+        a(href=eventInfo.posterLink)
+          img(src=eventInfo.poster width=600)
+  tr(bgcolor="#F8F8F8")
+    td(colspan="4" align="center" valign="middle" style="padding: 5px 0 5px;font-size: 1px; line-height: 1px; width:300px")
+      p(align="center" style="color:#000; font-weight: normal; margin: 0; padding: 0; line-height: 20px; font-size: 12px;font-family: Trebuchet MS; ")
+        p(style="color:#000; font-weight: normal; margin: 0; padding: 0px 100px; line-height: 20px; font-size: 15px; font-family: Trebuchet MS; text-align: Middle;")
+          br
+          | #{eventInfo.text}
+  td(align="right" colspan="4" style="font-size: 20px; padding:20px; font-family: Trebuchet MS;background-color:#F8F8F8;")
+    box(type="box" style="padding: 5px 15px 5px 15px; background-color:#D8D8D8")
+      a(href="#HIGHLIGHTS" style="color: #000;") BACK TO HIGHLIGHTS
+  tr
+    td(colspan="4" style="background-color:#F8F8F8;")
+      hr(style="height:3px; width:800px; background-color:#D8D8D8; align:center")
+    
+doctype html
+html(lang="en")
+  head
+    meta(content="text/html; charset=utf-8" http-equiv="Content-Type")
+    link(rel="stylesheet" href="file:///Downloads/css/bootstrap.css")
+    link(rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css")
+    title= postTitle     
+
+  body
+
+    //Sent
+    table(align="center" width ="800px")
+      tr
+        td(colspan="3" align="middle") Having trouble reading this? View it in your browser 
+          a(href=postInfo.link) here
+      tr
+        td(colspan="3")
+          hr(style="height:1px; width:800px; background-color:#333; align:center")
+
+    //Date & Icons
+    table(align="center" width="800px" style="background-color:#749a9c;")
+      tr(height="30px" style="background-color:#749a9c;")
+        td(height="10px" colspan="1" style="font-size:21px; font-family: Trebuchet MS; color:#F8F8F8; padding: 0px 0px 0px 20px") 
+          if postInfo.week != ''
+            | #{postInfo.week + ': ' + postInfo.date}
+          else
+            | #{postInfo.date}
+        td(height="30px" colspan="1" align="right" style="font-size:15px; font-family: calibri; color:#33334c; padding:1px 20px;")
+          a(href="mailto:feedback@nussu.org.sg")
+            img(src="https://sites.google.com/a/nussu.org.sg/nus-students-union/website/Question.png" alt="feedback")
+          a(href="http://nussu.org.sg")
+            img(src="https://sites.google.com/a/nussu.org.sg/nus-students-union/website/Web_2.png")
+          a(href="http://www.facebook.com/nus.students.union")
+            img(src="https://sites.google.com/a/nussu.org.sg/nus-students-union/website/Facebook_1.png" alt="fb")
+
+    //Cover Picture
+    table(align="center" width="800px")
+      tr
+        td(align="middle" style="background:#FFFFFF;" colspan="4")
+          img(src="https://sites.google.com/a/nussu.org.sg/nus-students-union/website/Cover%20Photo.png/" alt="thumb")
+
+    br
+    table(align="center" width="800" style="background-color:#F8F8F8;")
+      //Hightlight Bar
+      tr(style="background-color:#D8D8D8;")
+        td(colspan="4" align="center" style="font-family: Trebuchet MS; font-size:30px; padding: 2px") 
+          a(id="HIGHLIGHTS")
+          | HIGHLIGHTS
+      tr(style="background-color:#D8D8D8;")
+        td(colspan="4" align="center" style="font-family: Trebuchet MS; font-size:10px; background-color:#D8D8D8; padding:2px")
+          em *Click on the thumbnails for more information*
+
+      //Events Summary
+      tr(bgcolor="F8F8F8")
+
+        //Summary 1
+        if postInfo.event1
+          td(valign="top" width="800/3" align="center" colspan="1" style=" padding: 10px;")
+            +summary(postInfo.event1, 1)
+        
+        //Summary 2
+        td(valign="top" width="800/3" align="center" colspan="1" style=" padding: 10px;")
+          if postInfo.event2
+            +summary(postInfo.event2, 2)
+
+        //Summary 3
+        td(valign="top" width="800/3" align="center" colspan="1" style=" padding: 10px;")
+          if postInfo.event3
+            +summary(postInfo.event3, 3)
+
+      tr(bgcolor="F8F8F8")
+
+        //Summary 4
+        if postInfo.event4
+          td(valign="top" width="800/3" align="center" colspan="1" style=" padding: 10px;")
+            +summary(postInfo.event4, 4)
+        
+        //Summary 5
+        td(valign="top" width="800/3" align="center" colspan="1" style=" padding: 10px;")
+          if postInfo.event5
+            +summary(postInfo.event5, 5)
+
+        //Summary 6
+        td(valign="top" width="800/3" align="center" colspan="1" style=" padding: 10px;")
+          if postInfo.event6
+            +summary(postInfo.event6, 6)
+
+      tr(bgcolor="F8F8F8")
+
+        //Summary 7
+        if postInfo.event7
+          td(valign="top" width="800/3" align="center" colspan="1" style=" padding: 10px;")
+            +summary(postInfo.event7, 7)
+        
+        //Summary 8
+        td(valign="top" width="800/3" align="center" colspan="1" style=" padding: 10px;")
+          if postInfo.event8
+            +summary(postInfo.event8, 8)
+
+        //Summary 9
+        td(valign="top" width="800/3" align="center" colspan="1" style=" padding: 10px;")
+          if postInfo.event9
+            +summary(postInfo.event9, 9)
+
+      tr
+        td(colspan="4" align="center" style="font-family: Trebuchet MS; font-size:30px; background-color:#D8D8D8; padding:2px")
+          | NUSSU EVENTS
+          br
+      td(colspan="4" align="center" style="font-family: Trebuchet MS; font-size:10px; background-color:#D8D8D8; padding:2px")
+        em *Click on the posters to find out more!*
+        br
+      
+      //Event Details
+      //Details 1
+      if postInfo.event1
+        +details(postInfo.event1, 1)
+
+      //Details 2
+      if postInfo.event2
+        +details(postInfo.event2, 2)
+
+      //Details 3
+      if postInfo.event3
+        +details(postInfo.event3, 3)
+
+      //Details 4
+      if postInfo.event4        
+        +details(postInfo.event4, 4)
+
+      //Details 5
+      if postInfo.event5
+        +details(postInfo.event5, 5)
+
+      //Details 6
+      if postInfo.event6
+        +details(postInfo.event6, 6)
+
+      //Details 7
+      if postInfo.event7
+        +details(postInfo.event7, 7)
+
+      //Details 8
+      if postInfo.event8
+        +details(postInfo.event8, 8)
+
+      //Details 9
+      if postInfo.event9
+        +details(postInfo.event9, 9)
+
+    //Footers
+    table(align="center" width="800px;")
+      tr
+        td(colspan="4" style="background:#33334c; padding:1.5px;")
+      tr(bgcolor="#F8F8F8")
+        td(align="center" width="800/3" colspan="1" style="font-size:20px; font-family:Calibri; padding: 5px")
+          a(href="http://nussu.org.sg/resources/" style="color: black;")
+            strong Communication Channels
+        td(align="center" width="800/3" colspan="1" style="font-size:20px; font-family:Calibri; padding: 5px")
+          a(href="http://nussu.org.sg/resources/" style="color: black;")
+            strong Logistics Rental
+        td(align="center" width="800/3" colspan="1" style="font-size:20px; font-family:Calibri; padding: 5px")
+          a(href="http://nussu.org.sg/resources/" style="color: black;")
+            strong Facilities Booking
+      tr
+        td(colspan="4" style="background:#33334c; padding:1.5px;")
+
+    table(align="center" width="800px" style="background-color:#D8D8D8;")
+      tr(bgcolor="#D8D8D8")
+        td(colspan="3" align="middle" style="font-family: calibri; font-size:18px; padding: 10px 30px 0px 30px;")
+          strong
+            | For feedback &amp; enquiries, email us at 
+            a(href="mailto:feedback@nussu.org.sg" style="color: #000;") feedback@nussu.org.sg
+      tr(style="background-color:#D8D8D8; vertical-align: top;")
+        td(colspan="1" width="500px" align="left" style="padding: 10px 30px;")
+          a(href="https://goo.gl/maps/CiMLjqxrUxbGkXEeA")
+            img(class="img-square" src="https://sites.google.com/a/nussu.org.sg/nus-students-union/_/rsrc/1572156136642/website/address.png" alt="location")
+          strong National University of Singapore Students' Union
+          br(style="padding: 0px 35px")
+          img(class="img-circle" src="https://sites.google.com/a/nussu.org.sg/nus-students-union/_/rsrc/1572151360940/website/Grey.png" alt="")
+          | NUSSU Secretariat, Yusof Ishak House,
+          br
+          img(class="img-circle" src="https://sites.google.com/a/nussu.org.sg/nus-students-union/_/rsrc/1572151360940/website/Grey.png" alt="")
+          | 31 Lower Kent Ridge Road #05-01, Singapore 119078
+          br
+          img(class="img-square" src="https://sites.google.com/a/nussu.org.sg/nus-students-union/_/rsrc/1572150430043/website/phone.png" alt="phone")
+          | +(65) 6601 1345
+          br
+          img(class="img-square" src="https://sites.google.com/a/nussu.org.sg/nus-students-union/_/rsrc/1572150571782/website/website.png" alt="globe")
+          a(href="http://www.nussu.org.sg") nussu.org.sg
+          br
+          img(class="img-circle" src="https://sites.google.com/a/nussu.org.sg/nus-students-union/_/rsrc/1572150540586/website/fb.png" alt="fb")
+          a(href="http://www.facebook.com/nus.students.union") fb.com/nus.students.union
+      tr
+        td(align="center" style="height:20px; font-size: 1px; line-height: 1px; background:#749a9c" height="20"	valign="middle" colspan="3")
+          span(style="font-size: 12px; line-height: 18px; color:#FFF; margin: 0; padding: 0; font-family: Trebuchet MS;")
+            | Copyright	© 2020 NUSSU All Rights Reserved.
+          
+
+          

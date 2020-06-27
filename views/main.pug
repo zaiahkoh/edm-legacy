@@ -1,0 +1,16 @@
+html(lang="en")
+  head
+    title Main Page
+  
+  body
+      form(action = "/", method = "POST")
+        p
+          | Number of events:
+          //input(type='text', name='numberOfEvents', value='')
+          select(name="numberOfEvents")
+            - var n = 1;
+            while n <= 9
+              option(value=n) #{n}
+              - n++
+          input(type='submit', value='Submit')
+  
