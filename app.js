@@ -36,4 +36,6 @@ app.post('/', function(req, res){
 
 app.use('/submit', submit);
 
-app.listen(8080);
+const PORT = process.env.PORT || 3000;
+
+app.listen(PORT);
