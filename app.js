@@ -20,19 +20,6 @@ app.use(express.static('public'));
 //Declaring routers
 var submit = require('./submit.js');
 
-//Declaring the Mongoose dependency
-var mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/my_db', {useNewUrlParser: true});
-
-var eventSchema = mongoose.Schema({
-    title: String,
-    organisation: String,
-    thumbnail: String,
-    description: String
-})
-
-var Event = mongoose.model('Event', eventSchema);
-
 app.set('view engine', 'pug');
 
 app.get('/', function(req, res){
